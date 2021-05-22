@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet"> <link href="https://fonts.googleapis.com/css2?family=Reggae+One:wght@300&display=swap" rel="stylesheet">
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        *:hover{
+            cursor: default;
+        }
+        nav{
+            display: flex;
+            margin:10px 0px;
+            background-color: #3f3f3f;
+            padding:10px 0px;
+        }
+        #icon{
+            width:10vw;
+            height:10vh;
+        }
+        h1{
+            display: block;
+            width: fit-content;
+            margin: auto;
+            font-family: 'Reggae One', cursive;
+            font-size: 2.5rem;
+            color: #0F9D58;
+
+        }
+        .container{
+            display: flex;
+            height: 70vh;
+        }
+        .msg-section{
+            display: flex;
+            flex-direction: column;
+            width:80vw;
+            height:inherit;
+            margin: auto;
+            border: 2px solid black;
+            border-radius: 10px;
+            overflow-y:auto;
+            /* overflow-x:hidden; */
+            
+        }
+        
+        .user-list{
+            display: block;
+            overflow-y: auto;
+
+            width:18vw;
+            margin: auto;
+            border:1px solid black;
+            height:inherit;
+        }
+        #list-head{
+
+            font-family: cursive;
+            padding: 2px 5px;
+            background-color: black;
+            color:white;
+            font-size: 1.5rem;
+            height:5vh;
+        }
+        ul > :nth-child(even){
+            background-color:#ced6d2 ;
+        }
+         .active{
+            list-style:none;
+            
+            font-size: 1.5rem;
+        }
+        .active::before{
+            content: "\2022";
+            color:green;
+            font-weight: bold;
+            display: inline-block;
+            font-size: 2rem;
+            margin-left: 1em;
+        }
+        .inactive{
+            list-style:none;    
+            font-size: 1.5rem;
+        }
+        .inactive::before{
+            content: "\2022";
+            color:red;
+            font-weight: bold;
+            display: inline-block;
+            font-size: 2rem;
+            margin-left: 1em;
+        }
+        .msg{
+            
+            font-family: cursive;
+            border:2px solid black;
+            margin:5px 10px;
+            padding:5px 10px;
+            font-size: 1.5rem;
+            background-color: #3f3f3f;
+            max-width: 500px;           
+            color: white;
+            
+        }    
+        .left{
+            place-self: flex-start;           
+            width:fit-content;
+            height: fit-content;
+        }
+        .right{
+           place-self: flex-end;
+           /* overflow:hidden; */
+
+            /* width:fit-content;
+            height: fit-content; */
+        }
+        .user{
+            
+            display: block;
+            margin: auto;
+            width:fit-content;
+            height: fit-content;
+            padding: 10px;
+            font-size: 1.3rem;
+            font-family: 'Reggae One', cursive;
+        }
+        
+        #form{
+            display: flex;
+            width: 90vw;
+            height:7vh;            
+            margin: 10px auto;
+        }
+        #input{
+            height: inherit;
+            width: inherit;
+            padding:2px 10px;
+            font-size: 1.2rem;            
+        }
+        button{           
+            width:45px;
+            height:45px;
+            background-color: white;
+            border: 0px;
+            outline:0px;            
+        }
+        #Capa_1{
+            margin: 0px 10px;
+            height: inherit;
+            background-color: white;
+            border-radius: 50px;
+            padding:3px;
+        }
+        #Capa_1:hover{
+            filter: invert(100%);
+        }
+        
+        h3{
+            display: block;
+            width: fit-content;
+        }
+        @media screen and (max-width:450px){
+            .user-list{
+                width: 0px;
+            }
+            .msg-section{
+                width: 90vw;
+            }
+            #form{
+                width:90vw;
+            }
+            #Capa_0{
+                width:15vw;
+                height: 15vh;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+  <svg version="1.1" id="Capa_0"  width="10vw" height="10vh" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 121.021 121.021" style="enable-background:new 0 0 121.021 121.021;" xml:space="preserve">
+<g>
+	<g>
+		<g>
+			<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#8C8B88;" d="M96.575,81.31c0,19.176,0,34.936-34.724,34.721h-0.636
+				c-34.721,2.383-34.721-15.545-34.721-34.721v-0.566c0-19.176,15.545-34.721,34.721-34.721h0.636
+				c19.177,0,34.724,15.545,34.724,34.721V81.31z"/>
+			<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#E2E2E2;" d="M88.702,81.469c0,19.079,7.873,34.389-25.977,35.878l0,0
+				c-33.986,2-25.977-16.799-25.977-35.878v-0.563c0-19.077,11.524-34.542,25.74-34.542h0.471c14.218,0,25.743,15.465,25.743,34.542
+				V81.469z"/>
+		</g>
+		<g>
+			<g>
+				<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#9D9D9D;" d="M49.704,95.011c4.614,7.734,4.903,20.135-2.177,24.357
+					c-7.079,4.225-18.849-1.328-23.463-9.062c-4.614-7.735-6.349-14.237,4.465-21.653C37.693,82.37,45.089,87.276,49.704,95.011z"/>
+				<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#8C8B88;" d="M50.602,96.685c4.172,6.993,3.931,18.506-3.148,22.729
+					c-7.08,4.223-18.319-0.439-22.491-7.434c-4.173-6.992-5.588-12.963,5.265-20.311C39.426,85.442,46.428,89.69,50.602,96.685z"/>
+			</g>
+			<g>
+				<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#9D9D9D;" d="M75.902,95.011c-4.614,7.734-4.903,20.135,2.177,24.357
+					c7.079,4.225,18.849-1.328,23.463-9.062c4.614-7.735,6.349-14.237-4.465-21.653C87.913,82.37,80.518,87.276,75.902,95.011z"/>
+				<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#8C8B88;" d="M75.005,96.685c-4.172,6.993-3.931,18.506,3.148,22.729
+					c7.08,4.223,18.319-0.439,22.491-7.434c4.173-6.992,5.588-12.963-5.265-20.311C86.181,85.442,79.179,89.69,75.005,96.685z"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g>
+				<circle style="fill-rule:evenodd;clip-rule:evenodd;fill:#9D9D9D;" cx="96.81" cy="20.857" r="20.857"/>
+				<g>
+					<circle style="fill-rule:evenodd;clip-rule:evenodd;fill:#9D9D9D;" cx="24.21" cy="20.857" r="20.856"/>
+					<ellipse style="fill-rule:evenodd;clip-rule:evenodd;fill:#E2E2E2;" cx="25.168" cy="28.202" rx="15.644" ry="14.791"/>
+				</g>
+				<ellipse style="fill-rule:evenodd;clip-rule:evenodd;fill:#E2E2E2;" cx="96.575" cy="28.202" rx="15.644" ry="14.791"/>
+			</g>
+			<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#9D9D9D;" d="M24.21,38.21c0-18.68,16.711-33.822,37.325-33.822
+				C82.15,4.388,98.86,19.53,98.86,38.21s-9.247,33.822-37.325,33.822C31.559,72.032,24.21,56.89,24.21,38.21z"/>
+		</g>
+		<g>
+			<g>
+				<g>
+					<circle style="fill-rule:evenodd;clip-rule:evenodd;fill:#434849;" cx="42.522" cy="39.882" r="4.074"/>
+					<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M42.693,39.095c0-0.85,0.686-1.541,1.538-1.541
+						s1.538,0.692,1.538,1.541c0,0.852-0.686,1.542-1.538,1.542S42.693,39.946,42.693,39.095z"/>
+				</g>
+				<g>
+					<circle style="fill-rule:evenodd;clip-rule:evenodd;fill:#434849;" cx="80.027" cy="39.882" r="4.074"/>
+					<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;" d="M80.198,39.095c0-0.85,0.687-1.541,1.539-1.541
+						c0.853,0,1.538,0.692,1.538,1.541c0,0.852-0.686,1.542-1.538,1.542C80.885,40.637,80.198,39.946,80.198,39.095z"/>
+				</g>
+			</g>
+			<g>
+				<path style="fill-rule:evenodd;clip-rule:evenodd;fill:#434849;" d="M68.598,55.45c0,3.12-2.529,5.649-5.65,5.649h-2.823
+					c-3.121,0-5.65-2.529-5.65-5.649V41.458c0-3.121,2.529-5.65,5.65-5.65h2.823c3.121,0,5.65,2.529,5.65,5.65V55.45z"/>
+				<g>
+					<circle style="fill-rule:evenodd;clip-rule:evenodd;" cx="59.346" cy="57.946" r="0.933"/>
+					<circle style="fill-rule:evenodd;clip-rule:evenodd;" cx="63.659" cy="57.946" r="0.934"/>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+  </svg>
+
+    <h1>Domingo></h1>
+    </nav>
+   <div class="container">
+    <div class="user-list">
+        <div id="list-head">Members</div>
+        <ul id="list">
+            <!-- new users add here -->
+        </ul>
+    </div>
+    <div class="msg-section" id="msg-section">
+        <!-- new msgs appear here -->
+        <!-- new user joined/left -->
+    </div>
+  </div>
+    <form action="" id="form">
+        <input type="text" id="input" placeholder="Write here ..." autocomplete="off">
+        <button ><?xml version="1.0" encoding="iso-8859-1"?>
+            <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+            <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+            <svg version="1.1" width="45px" height="45px" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 width="535.5px" height="535.5px" viewBox="0 0 535.5 535.5" style="enable-background:new 0 0 535.5 535.5;" xml:space="preserve"
+                >
+            <g>
+                <g id="send">
+                    <polygon points="0,497.25 535.5,267.75 0,38.25 0,216.75 382.5,267.75 0,318.75 		"/>
+                </g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            </svg>
+            </button>
+    </form>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+<script>
+        var socket=io();
+        var list=document.getElementById('list');
+        var msgSection=document.getElementById('msg-section');
+        var input=document.getElementById('input');
+        var form=document.getElementById('form');
+        // var icon=document.getElementById('Capa_0');
+        var members=[];
+        var listCount=0;
+        msgSection.scrollTop=msgSection.scrollHeight;
+
+
+        var userName=prompt('Enter name');
+        if(userName.length>5)
+        userName=userName.substring(0,5);
+        
+
+        
+        socket.emit('new-user-joined',userName);
+
+        socket.on('user-joined',data=>{
+            members.splice(0,members.length);
+        Array.prototype.push.apply(members,data.members);
+            let i;
+            for(i=listCount;i<members.length;i++)
+        memberStatus(members[i],'active');
+        // console.log(data.members);
+        // members=data.members;
+       
+
+
+        });
+
+        socket.on('recieve',data=>{
+            appendReciever(data.msg,data.user);
+        })
+        
+        socket.on('left',user=>{
+            memberStatus(user,'inactive');
+        })
+
+        socket.on('update',list=>{
+            // console.log(list);
+            // members=list;
+            members.splice(0,members.length);
+        Array.prototype.push.apply(members,list);
+
+        })
+
+
+
+       function memberStatus(name,status)
+       {
+           
+           let newList=document.createElement('li');
+           newList.classList.add(status);
+           if(name!=null)
+           newList.innerText='  '+name;
+           listCount++;
+
+           
+           list.appendChild(newList);
+           let newName=document.createElement('div');
+           newName.classList.add('user');
+           if(status=='inactive'&&name!=null)
+           newName.innerText=name+' left';
+            else
+           newName.innerText=name+' joined';
+           msgSection.appendChild(newName);
+           msgSection.scrollTop=msgSection.scrollHeight;
+       }
+       
+       function appendmsg(data)
+       {
+           let newMsg=document.createElement('div');
+           newMsg.classList.add('msg');
+           newMsg.classList.add('right');
+           newMsg.innerText=data;
+           msgSection.appendChild(newMsg);
+           msgSection.scrollTop=msgSection.scrollHeight;
+       }
+
+       function appendReciever(data,user)
+       {
+            
+           let newMsg=document.createElement('div');
+           newMsg.classList.add('msg');
+           newMsg.classList.add('left');
+           newMsg.innerHTML=`<h3><i>${user}&nbsp>&nbsp</i></h3>${data}`;
+           msgSection.appendChild(newMsg);
+           msgSection.scrollTop=msgSection.scrollHeight;
+       }
+
+       form.addEventListener('submit', function(e) 
+       {
+         e.preventDefault();
+         if (input.value) 
+         {
+           appendmsg(input.value);
+
+        socket.emit('send',input.value);
+           input.value = '';       
+         }
+        });
+        
+        // console.log(members);
+       
+    </script>
+</body>
+</html>
